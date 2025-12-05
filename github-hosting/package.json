@@ -1,0 +1,28 @@
+{
+  "name": "nullboard-customized",
+  "version": "1.0.0",
+  "description": "A customized version of Nullboard with Solarized Dark theme and enhanced UI",
+  "main": "nullboard.html",
+  "scripts": {
+    "start": "npx http-server . -o nullboard.html",
+    "test": "echo \"No tests specified for static site\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crazymonkyyy/nullboard-customized.git"
+  },
+  "keywords": [
+    "kanban",
+    "board",
+    "productivity",
+    "minimalist",
+    "solarized",
+    "dark-theme"
+  ],
+  "author": "AI-assisted customization",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/crazymonkyyy/nullboard-customized/issues"
+  },
+  "homepage": "https://crazymonkyyy.github.io/nullboard-customized/"
+}
