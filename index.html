@@ -10,8 +10,8 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background: #f8f9fb;
-            color: #333;
+            background: #002b36; /* Solarized base03 */
+            color: #839496; /* Solarized base0 */
         }
         
         .header {
@@ -20,7 +20,7 @@
         }
         
         h1 {
-            color: #24292e;
+            color: #93a1a1; /* Solarized base1 */
         }
         
         .features {
@@ -31,16 +31,16 @@
         }
         
         .feature-card {
-            background: white;
+            background: #073642; /* Solarized base02 */
             border-radius: 6px;
             padding: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-            border-left: 4px solid #0366d6;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            border-left: 4px solid #b58900; /* Solarized yellow */
         }
         
         .btn {
             display: inline-block;
-            background: #0366d6;
+            background: #268bd2; /* Solarized blue */
             color: white;
             padding: 12px 24px;
             border-radius: 6px;
@@ -48,31 +48,34 @@
             font-weight: 500;
             text-align: center;
             margin: 20px 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
         }
         
         .btn:hover {
-            background: #0371e6;
+            background: #1d6fa5; /* Darker blue */
         }
         
         .btn-secondary {
-            background: #f6f8fa;
-            color: #24292e;
-            border: 1px solid #e1e4e8;
+            background: #586e75; /* Solarized base01 */
+            color: #eee8d5; /* Solarized base2 */
         }
         
         .btn-secondary:hover {
-            background: #fafbfc;
+            background: #657b83; /* Solarized base00 */
         }
         
         .instructions {
-            background: white;
+            background: #073642; /* Solarized base02 */
             border-radius: 6px;
             padding: 25px;
             margin: 30px 0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
         
         .instructions h2 {
+            color: #93a1a1; /* Solarized base1 */
             margin-top: 0;
         }
         
@@ -84,12 +87,37 @@
             margin-bottom: 10px;
         }
         
+        .repo-link {
+            display: inline-block;
+            margin: 10px 5px;
+            color: #2aa198; /* Solarized cyan */
+            text-decoration: none;
+        }
+        
+        .repo-link:hover {
+            text-decoration: underline;
+        }
+        
         footer {
             text-align: center;
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid #e1e4e8;
-            color: #666;
+            border-top: 1px solid #586e75; /* Solarized base01 */
+            color: #657b83; /* Solarized base00 */
+        }
+        
+        code {
+            background: #073642; /* Solarized base02 */
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        pre {
+            background: #073642; /* Solarized base02 */
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
         }
     </style>
 </head>
@@ -122,15 +150,15 @@
         </div>
         <div class="feature-card">
             <h3>🎨 Refined UI</h3>
-            <p>Improved borders, colors, and visual hierarchy for better organization.</p>
+            <p>Improved borders and visual hierarchy with Solarized accent colors.</p>
         </div>
     </div>
     
     <div style="text-align: center;">
         <a href="nullboard.html" class="btn">Launch Application</a>
-        <a href="https://github.com/crazymonkyyy/nullboard" class="btn btn-secondary">View Forked Project</a>
+        <a href="https://github.com/crazymonkyyy/nullboard" class="repo-link">GitHub Repository</a>
     </div>
-
+    
     <div class="instructions">
         <h2>Getting Started</h2>
         <ol>
@@ -140,9 +168,23 @@
             <li>No internet connection required after initial load!</li>
         </ol>
     </div>
-
+    
+    <div class="instructions">
+        <h2>Features</h2>
+        <p>This customized version includes all original Nullboard functionality plus:</p>
+        <ul>
+            <li>Solarized Dark theme as default</li>
+            <li>150% larger UI for better readability</li>
+            <li>Noto Sans font for improved typography</li>
+            <li>In-app keybindings reference</li>
+            <li>Export to Markdown functionality</li>
+            <li>Enhanced visual styling with Solarized accent colors</li>
+        </ul>
+    </div>
+    
     <footer>
-        <p>Fork by <a href="https://github.com/crazymonkyyy">crazymonkyyy</a> of <a href="https://github.com/apankrat/nullboard">Nullboard</a> | Created with AI assistance (AI slop)</p>
+        <p>Fork of <a href="https://github.com/apankrat/nullboard" class="repo-link">Nullboard</a> by Alexander Pankratov</p>
+        <p>Customized with Solarized theme and enhanced UI</p>
         <p>All data is stored locally in your browser - nothing is sent to any server</p>
     </footer>
 </body>

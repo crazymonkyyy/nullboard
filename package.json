@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/crazymonkyyy/nullboard-customized.git"
+    "url": "git+https://github.com/crazymonkyyy/nullboard.git"
   },
   "keywords": [
     "kanban",
@@ -19,10 +19,10 @@
     "solarized",
     "dark-theme"
   ],
-  "author": "AI-assisted customization",
+  "author": "Fork by crazymonkyyy",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/crazymonkyyy/nullboard-customized/issues"
+    "url": "https://github.com/crazymonkyyy/nullboard/issues"
   },
-  "homepage": "https://crazymonkyyy.github.io/nullboard-customized/"
+  "homepage": "https://crazymonkyyy.github.io/nullboard/"
 }

@@ -295,9 +295,10 @@
 
 		/* Allow board to expand to available width */
 		width: 100%;
-		max-width: unset;
+		max-width: calc(100% - 40px); /* Changed to 100% - 40px to calculate width accounting for 20px padding on each side */
 		margin: 0;
 		padding: 20px;
+		box-sizing: border-box; /* Include padding in width calculation */
 
 		-webkit-touch-callout: none;
 		-webkit-user-select: none;
@@ -330,7 +331,7 @@
 
 	/***/
 	.board .head {
-		padding: 5px 0;
+		padding: 8px 0; /* Increased from 5px to provide more space */
 		margin: 1px 5px 0;
 		position: relative;
 	}
@@ -342,10 +343,14 @@
 		line-height: calc( 20 / var(--fs-head) );
 		padding: 0 5px 2px;
 		border: none;
+		/* Ensure text doesn't run into the menu area */
+		margin-right: 60px;  /* Make space for the menu on the right */
+		box-sizing: border-box;
+		max-width: 100%;
 	}
 
 	.board .head .text {
-		min-height: 20px;
+		min-height: 30px; /* Increased from 20px to make title boxes bigger */
 		white-space: pre;
 		overflow: hidden;
 	}
@@ -380,6 +385,7 @@
 		padding: 7px 9px 10px 45px; /* Increased padding by 150% */
 		background: linear-gradient(to right, #EAEDF000, #EAEDF0 10px);
 		line-height: calc(30 / 16.5); /* Adjusted for new base font size */
+		z-index: 2; /* Ensure menu stays above other content */
 	}
 
 	.board .menu a,
@@ -389,6 +395,7 @@
 	}
 
 	.board .menu a {
+		font-size: calc( var(--fs) * 0.95 ); /* Increased font size for menu buttons */
 		padding: 8px 10px; /* Increased padding for bigger buttons */
 	}
 
@@ -419,6 +426,14 @@
 		position: relative;
 	}
 
+	.board > .head .text,
+	.board > .head .edit {
+		/* Ensure text doesn't run into the menu area */
+		margin-right: 60px;  /* Make space for the menu on the right */
+		box-sizing: border-box;
+		max-width: 100%;
+	}
+
 	.board > .head .menu {
 		margin-right: 5px;
 	}
@@ -440,6 +455,8 @@
 		white-space: nowrap;
 		overflow: auto;
 		scrollbar-width: none;
+		max-width: 100%; /* Prevent lists from exceeding board width */
+		box-sizing: border-box;
 	}
 
 	.board .list {
@@ -448,6 +465,7 @@
 		width: calc( var(--lw) * 1px );
 		margin: 0 5px 10px;
 		background: linear-gradient(#EAEDF0 30px, #DDE1E5 90px);
+		border: 1px solid #ccc; /* Add a light grey border to define the list */
 		border-radius: 2px;
 	}
 
@@ -463,6 +481,11 @@
 		margin-right: 0;
 	}
 
+	.board .list > .head {
+		padding: 8px 5px; /* Added padding to list title boxes to make them bigger */
+		min-height: 30px; /* Added minimum height to list title boxes */
+	}
+
 	.board .list .notes {
 		padding: 0 5px;
 	}
@@ -471,8 +494,14 @@
 	.board .head .menu .teaser {
 		position: absolute;
 		right: 3px;
-		top: 5px;
-		padding: 0 3px;
+		top: 50%;
+		transform: translateY(-50%);
+		padding: 6px; /* Increased from 0 3px for better visibility */
+		font-size: calc(18rem / 11); /* Increased font size for better visibility */
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 24px; /* Set a fixed height for proper centering */
 	}
 
 	.board .head .menu .bulk {
@@ -628,11 +657,14 @@
 	}
 
 	.board .note .ops .teaser {
-		display: block;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		margin-top: 3px; /* Increased from 2px */
 		margin-right: 2px; /* Increased from 1px */
-		padding-right: 5px; /* Increased from 3px */
-		font-size: calc(14rem / 11); /* Make the teaser more visible */
+		padding: 5px; /* Increased from just right padding for better touch targets */
+		font-size: calc(16rem / 11); /* Increased font size for better visibility */
+		height: 24px; /* Set a fixed height for proper centering */
 	}
 
 	.board .note .ops .teaser:before {
@@ -651,6 +683,7 @@
 	}
 
 	.board .note .ops .bulk a {
+		font-size: calc( var(--fs) * 0.95 ); /* Increased font size for note operation buttons */
 		padding: 5px 6px; /* Increased padding for bigger buttons */
 	}
 
@@ -693,8 +726,12 @@
 	}
 
 	.board .note.collapsed .ops .teaser {
-		padding: 2px 5px 0 2px; /* Increased padding by 150% */
-		font-size: calc(14rem / 11); /* Make it more visible */
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 6px; /* Increased from 2px 5px 0 2px for better touch targets */
+		font-size: calc(16rem / 11); /* Increased font size for better visibility */
+		height: 24px; /* Set a fixed height for proper centering */
 	}
 
 	.board .note.collapsed .ops .teaser:before {
@@ -772,6 +809,7 @@
 	.logo a.site,
 	.logo .bulk a {
 		color: #000;
+		font-size: calc( var(--fs) * 0.95 ); /* Increased font size for logo buttons */
 		padding: 6px 8px; /* Add padding to make buttons bigger and more touch-friendly */
 	}
 
@@ -810,6 +848,11 @@
 		line-height: calc(19 / 11);
 		z-index: 3;
 		background: #f8f9fb;
+		min-width: 40px; /* Ensure minimum size for touch targets */
+		min-height: 40px; /* Ensure minimum size for touch targets */
+		display: flex; /* Make it easier to center content */
+		align-items: center; /* Vertically center content */
+		justify-content: center; /* Horizontally center content */
 	}
 
 	.crowded .config:hover,
@@ -822,6 +865,7 @@
 		display: block;
 		color: #000;
 		transition: color 200ms;
+		font-size: calc( var(--fs) * 0.95 ); /* Increased font size for config buttons */
 		padding: 6px 8px; /* Add padding to make buttons bigger and more touch-friendly */
 	}
 
@@ -830,10 +874,15 @@
 	}
 
 	.config .teaser {
-		padding: 8px; /* Increased from 5px to provide 150% more space */
+		padding: 12px; /* Increased from 8px to provide more space */
 		color: #999;
 		position: relative;
-		font-size: calc(14rem / 11); /* Increase size for better visibility */
+		font-size: calc(16rem / 11); /* Increased size for better visibility */
+		min-width: 24px; /* Ensure minimum touch target size */
+		min-height: 24px; /* Ensure minimum touch target size */
+		display: flex; /* Make it easier to center content */
+		align-items: center; /* Vertically center content */
+		justify-content: center; /* Horizontally center content */
 	}
 
 	.config .teaser i {
@@ -1366,7 +1415,7 @@
 			outline: 1px solid #888;
 		}
 		.list {
-			outline: 1px solid #555;
+			outline: 1px solid #aaa; /* Changed from #888 to #aaa for better contrast in print */
 
 		}
 		.board .note .raw {
@@ -1466,6 +1515,7 @@
 
 	.theme-dark .board .note .ops .teaser {
 		color: #ccc;
+		/* Inherits flexbox centering properties from base style */
 	}
 
 	.theme-dark .board .note .ops .bulk {
@@ -1479,6 +1529,7 @@
 	}
 
 	.theme-dark .board .note .ops .bulk a {
+		font-size: calc( var(--fs) * 0.95 ); /* Increased font size for note operation buttons */
 		color: #ccc;
 		padding: 5px 6px; /* Match light theme padding */
 	}
@@ -1523,6 +1574,7 @@
 	/***/
 	.theme-dark .logo a {
 		color: #ccc;
+		font-size: calc( var(--fs) * 0.95 ); /* Increased font size for logo buttons */
 		padding: 6px 8px; /* Match light theme padding */
 	}
 
@@ -1547,6 +1599,7 @@
 
 	.theme-dark .config a {
 		color: #ddd;
+		font-size: calc( var(--fs) * 0.95 ); /* Increased font size for config buttons */
 		padding: 6px 8px; /* Match light theme padding */
 	}
 
@@ -1666,8 +1719,8 @@
 	}
 
 	.theme-solarized .board > .head {
-		box-shadow: 0 0 2px #93a1a1 inset;
-		border: 1px solid #586e75; /* base01 - border for better definition */
+		box-shadow: 0 0 2px #6c71c4 inset; /* purple inset shadow */
+		border: 1px solid #6c71c4; /* purple border for main board header */
 	}
 
 	/***/
@@ -1691,7 +1744,9 @@
 
 	.theme-solarized .reveal .board .head .text a,
 	.theme-solarized .reveal .board .note .text a {
-		color: #b58900; /* yellow */
+		color: #2aa198; /* cyan - for highlighted links */
+		box-shadow: 0 0 5px rgba(42, 161, 152, 0.7); /* Glowing effect for links */
+		border-radius: 2px;
 	}
 
 	@keyframes whoomp-solarized {
@@ -1707,7 +1762,7 @@
 
 	.theme-solarized .board .note.raw {
 		background: transparent;
-		border: 1px dashed #b58900; /* yellow - distinctive border for raw notes */
+		border: 1px dashed #2aa198; /* cyan - distinctive border for raw notes (changed from purple) */
 		border-radius: 3px;
 		box-shadow: none;
 	}
@@ -1719,20 +1774,23 @@
 
 	.theme-solarized .board .note .ops .teaser {
 		color: #93a1a1; /* base1 */
+		border: 1px solid transparent; /* For visibility */
+		/* Inherits flexbox centering properties from base style */
 	}
 
 	.theme-solarized .board .note .ops .bulk {
 		background: #002b36; /* base03 */
-		border: 1px solid #586e75; /* base01 - more visible border */
+		border: 1px solid #2aa198; /* cyan - accent color for operations */
 		border-top: none; /* Don't duplicate the top border */
 		box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 	}
 
 	.theme-solarized .board .note.raw .ops .bulk {
-		border: none;
+		border: 1px dotted #2aa198; /* cyan dotted border for raw notes operations */
 	}
 
 	.theme-solarized .board .note .ops .bulk a {
+		font-size: calc( var(--fs) * 0.95 ); /* Increased font size for note operation buttons */
 		color: #93a1a1; /* base1 */
 		padding: 5px 6px; /* Match light theme padding */
 	}
@@ -1743,20 +1801,22 @@
 
 	/***/
 	.theme-solarized .board .note.collapsed {
-		border: 1px solid #839496; /* base0 - border for collapsed notes */
+		border: 1px solid #6c71c4; /* purple - border for collapsed notes */
+		border-left: 3px solid #6c71c4; /* Thicker left border for collapsed notes */
 	}
 
 	.theme-solarized .board .note.dragging,
 	.theme-solarized .board .note.dragging.raw {
 		background: #002b36; /* base03 */
-		outline: 1px solid #eee8d5; /* base2 */
+		outline: 2px dashed #dc322f; /* red - for dragging state */
+		border-radius: 3px;
 	}
 
 	.theme-solarized .note-dragster {
 		box-shadow: 0px 1px 4px #000;
 		background: linear-gradient(#002b36, #073642); /* base03 to base02 */
-		border: 1px dashed #b58900; /* yellow dashed border for drag visual */
-		outline: 1px solid #b5890088; /* yellow with transparency */
+		border: 1px dashed #6c71c4; /* purple dashed border for drag visual */
+		outline: 1px solid #6c71c488; /* purple with transparency */
 		color: #839496; /* base0 */
 	}
 
@@ -1768,17 +1828,20 @@
 	}
 
 	.theme-solarized .board .head.editing .edit {
-		outline: 1px solid #b58900; /* yellow */
+		outline: 1px solid #2aa198; /* cyan - for editing state */
+		box-shadow: 0 0 3px rgba(42, 161, 152, 0.5); /* Cyan glow effect */
 	}
 
 	.theme-solarized .board .note.editing {
 		background: #002b36; /* base03 */
-		outline: 1px solid #b58900; /* yellow */
+		outline: 1px solid #2aa198; /* cyan - for editing state */
+		border-radius: 3px;
 	}
 
 	/***/
 	.theme-solarized .logo a {
 		color: #839496; /* base0 */
+		font-size: calc( var(--fs) * 0.95 ); /* Increased font size for logo buttons */
 		padding: 6px 8px; /* Match light theme padding */
 	}
 
@@ -1803,6 +1866,7 @@
 
 	.theme-solarized .config a {
 		color: #839496; /* base0 */
+		font-size: calc( var(--fs) * 0.95 ); /* Increased font size for config buttons */
 		padding: 6px 8px; /* Match light theme padding */
 	}
 
@@ -1811,12 +1875,14 @@
 	}
 
 	.theme-solarized .config .bulk .boards {
-		border-top: 1px solid #93a1a1; /* base1 */
-		border-bottom: 1px solid #93a1a1; /* base1 */
+		border-top: 1px solid #6c71c4; /* purple - border for settings panel */
+		border-bottom: 1px solid #6c71c4; /* purple - border for settings panel */
 	}
 
 	.theme-solarized .config .bulk .boards a.load-board.active {
 		color: #b58900; /* yellow */
+		border-left: 3px solid #2aa198; /* cyan - active board indicator */
+		padding-left: 12px;
 	}
 
 	.theme-solarized .config .bulk .boards a.load-board.active:hover {
@@ -1824,13 +1890,20 @@
 	}
 
 	.theme-solarized .config .bulk .break {
-		border-top: 1px solid #93a1a1; /* base1 */
+		border-top: 1px solid #6c71c4; /* purple - section break */
 	}
 
 	.theme-solarized.fs-set .config .bulk .ui-prefs .f-prefs tr.ui-fs td.val,
 	.theme-solarized.lh-set .config .bulk .ui-prefs .f-prefs tr.ui-lh td.val,
 	.theme-solarized.lw-set .config .bulk .ui-prefs .f-prefs tr.ui-lw td.val {
-		color: #b58900; /* yellow */
+		color: #2aa198; /* cyan - for adjusted values */
+		border: 1px solid #2aa198; /* cyan border */
+		border-radius: 3px;
+		background-color: rgba(42, 161, 152, 0.1); /* Subtle cyan background */
+	}
+
+	.theme-solarized .config .ui-prefs .section .title {
+		border-bottom: 2px solid #2aa198; /* cyan - section header border (instead of purple) */
 	}
 
 	.theme-solarized .config a.switch-theme i {
@@ -1851,7 +1924,8 @@
 	.theme-solarized .load-dragster {
 		background: #002b36; /* base03 */
 		box-shadow: 0px 2px 4px #000;
-		outline: 1px solid #b58900aa; /* yellow with transparency */
+		outline: 1px solid #2aa198aa; /* cyan with transparency */
+		border: 1px dashed #2aa198; /* cyan dashed border */
 		color: #839496; /* base0 */
 	}
 
@@ -1864,8 +1938,8 @@
 	.theme-solarized .overlay > div {
 		background: #073642; /* base02 */
 		color: #839496; /* base0 */
-		border: 1px solid #586e75; /* base01 */
-		box-shadow: 0 2px 6px #000;
+		border: 1px solid #6c71c4; /* purple border for overlays */
+		box-shadow: 0 2px 6px #000, 0 0 10px rgba(108, 113, 196, 0.3); /* purple glow */
 	}
 
 	.theme-solarized .overlay > div.license a {
@@ -4719,7 +4793,7 @@
 			return;
 
 		// Remove size restrictions - allow board to use available width
-		$board.css('max-width', '100vw');
+		$board.css('max-width', 'calc(100% - 40px)'); /* Changed to calc(100% - 40px) to calculate width accounting for 20px padding on each side */
 		$body.removeClass('crowded');
 	}
 
